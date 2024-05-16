@@ -5,7 +5,7 @@ export class AuthService {
 	client = new Client();
 	account;
 
-	// constructor - it runs first creating client and account
+	// constructor - it runs first creating client with appwrite
 	constructor() {
 		this.client
 			.setEndpoint(conf.appwriteUrl)
