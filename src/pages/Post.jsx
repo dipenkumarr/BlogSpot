@@ -1,35 +1,32 @@
-import React, { useState, useEffect } from "react";
-import service from "../appwrite/config";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Button, PostCard } from "../components";
+import appwriteService from "../appwrite/config";
+import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
-import esm from "html-react-parser";
 
-function Post() {
-	const [post, setPost] = useState([]);
+export default function Post() {
+	const [post, setPost] = useState(null);
 	const { slug } = useParams();
 	const navigate = useNavigate();
 
 	const userData = useSelector((state) => state.auth.userData);
-	const isAuthor = post && userData ? post.userId === userData.id : false;
+
+	const isAuthor = post && userData ? post.userId === userData.$id : false;
 
 	useEffect(() => {
 		if (slug) {
-			service.getPost(slug).then((post) => {
-				if (post) {
-					setPost(post);
-				} else {
-					navigate("/");
-				}
+			appwriteService.getPost(slug).then((post) => {
+				if (post) setPost(post);
+				else navigate("/");
 			});
-		}
+		} else navigate("/");
 	}, [slug, navigate]);
 
 	const deletePost = () => {
-		service.deletePost(post.$id).then((status) => {
+		appwriteService.deletePost(post.$id).then((status) => {
 			if (status) {
-				service.deleteFile(post.featuredImage);
+				appwriteService.deleteFile(post.featuredImage);
 				navigate("/");
 			}
 		});
@@ -66,5 +63,3 @@ function Post() {
 		</div>
 	) : null;
 }
-
-export default Post;

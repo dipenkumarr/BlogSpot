@@ -8,11 +8,14 @@ function EditPost() {
 	const { slug } = useParams();
 	const navigate = useNavigate();
 
+	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		if (slug) {
 			service.getPost(slug).then((post) => {
 				if (post) {
 					setPost(post);
+					setLoading(false);
 				}
 			});
 		} else {
@@ -20,11 +23,13 @@ function EditPost() {
 		}
 	}, [slug, navigate]);
 
-	return post ? (
+	return !loading ? (
 		<Container>
 			<PostForm post={post} />
 		</Container>
-	) : null;
+	) : (
+		"Loading Data"
+	);
 }
 
 export default EditPost;
