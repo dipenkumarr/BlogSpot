@@ -4,6 +4,7 @@ import { Controller } from "react-hook-form";
 import conf from "../conf/conf.js";
 
 function RealtimeEditor({ name, control, label, defaultValue = "" }) {
+	const api = conf.tinymcekey;
 	return (
 		<div className="w-full">
 			{label && (
@@ -18,7 +19,7 @@ function RealtimeEditor({ name, control, label, defaultValue = "" }) {
 				render={({ field: { onChange } }) => (
 					<Editor
 						initialValue={defaultValue}
-						apiKey={conf.tinymcekey}
+						apiKey={api}
 						init={{
 							initialValue: defaultValue,
 							height: 500,
