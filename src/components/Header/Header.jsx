@@ -37,10 +37,10 @@ function Header() {
 	];
 
 	return (
-		<header className="py-5 shadow-lg bg-white/70">
+		<header className="p-5 shadow-lg bg-white/70">
 			<Container>
-				<nav className="flex">
-					<div className="mr-4">
+				<nav className="flex justify-end">
+					<div className="mr-auto">
 						<Link to="/">
 							<Logo />
 						</Link>
