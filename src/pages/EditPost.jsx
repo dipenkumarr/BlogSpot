@@ -24,9 +24,11 @@ function EditPost() {
 	}, [slug, navigate]);
 
 	return !loading ? (
-		<Container>
-			<PostForm post={post} />
-		</Container>
+		<div className="w-full pt-20 m-auto min-h-screen">
+			<Container>
+				<PostForm post={post} />
+			</Container>
+		</div>
 	) : (
 		"Loading Data"
 	);

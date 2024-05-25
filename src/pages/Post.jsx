@@ -33,9 +33,9 @@ export default function Post() {
 	};
 
 	return post ? (
-		<div className="py-8">
+		<div className="py-8 min-h-screen">
 			<Container>
-				<div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+				<div className="w-full flex justify-center mb-4 relative border rounded-xl p-8">
 					<img
 						src={appwriteService.getFilePreview(post.featuredImage)}
 						alt={post.title}
@@ -43,13 +43,20 @@ export default function Post() {
 					/>
 
 					{isAuthor && (
-						<div className="absolute right-6 top-6">
+						<div className="absolute right-2 top-2">
 							<Link to={`/edit-post/${post.$id}`}>
-								<Button bgColor="bg-green-500" className="mr-3">
+								<Button
+									bgColor="bg-green-500"
+									className="mr-3 duration-200 hover:bg-green-600"
+								>
 									Edit
 								</Button>
 							</Link>
-							<Button bgColor="bg-red-500" onClick={deletePost}>
+							<Button
+								bgColor="bg-red-500"
+								className="duration-200 hover:bg-red-600"
+								onClick={deletePost}
+							>
 								Delete
 							</Button>
 						</div>
