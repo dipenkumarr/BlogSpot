@@ -11,7 +11,7 @@ export default function PostForm({ post }) {
 			defaultValues: {
 				title: post?.title || "",
 				slug: post?.$id || "",
-				content: post?.content || "",
+				content2: post?.content2 || "",
 				status: post?.status || "active",
 			},
 		});
@@ -105,10 +105,10 @@ export default function PostForm({ post }) {
 					}}
 				/>
 				<RealtimeEditor
-					label="Content :"
-					name="content"
+					label="Content2 :"
+					name="content2"
 					control={control}
-					defaultValue={getValues("content")}
+					defaultValue={getValues("content2")}
 				/>
 			</div>
 			<div className="w-1/3 px-2">
